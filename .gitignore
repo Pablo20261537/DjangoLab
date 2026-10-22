@@ -1,0 +1,46 @@
+# --- PYTHON / DJANGO ---
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+
+# Archivos de caché y compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Archivos locales de Django / Base de datos de desarrollo
+db.sqlite3
+media/
+staticfiles/
+*.log
+
+# Variables de entorno secretas
+.env
+
+
+# --- NODE.JS / FRONTEND ---
+# Dependencias instaladas
+node_modules/
+
+# Archivos de compilación o distribución de frontend (si aplica)
+dist/
+build/
+.next/
+
+
+# --- CONFIGURACIÓN DE EDITORES Y SISTEMA OPERATIVO ---
+# VS Code
+.vscode/
+
+# PyCharm / JetBrains
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
