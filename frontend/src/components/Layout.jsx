@@ -3,10 +3,13 @@ import SidebarApp from "./SidebarApp";
 import { SidebarProvider, SidebarTrigger } from "./ui/sidebar";
 import { ChevronDown, User, Settings, Shield, LogOut } from "lucide-react";
 import { txt } from "@/lang/uiLang";
-
+import { router } from "@inertiajs/react";
 export const Layout = ({ header, children }) => {
   //Abrir el modal o cerrar
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const logout = () =>{
+    router.post("/login/logout")
+  }
 
   return (
     <SidebarProvider>
@@ -90,7 +93,10 @@ export const Layout = ({ header, children }) => {
                   <div className="border-t border-slate-100 dark:border-slate-800/60 my-1"></div>
 
                   {/* Botón: Cerrar Sesión */}
-                  <div className="flex items-center w-full px-3 py-2 text-sm rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors font-medium cursor-pointer">
+                  <div
+                    onClick={logout}
+                    className="flex items-center w-full px-3 py-2 text-sm rounded-lg text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors font-medium cursor-pointer"
+                  >
                     <LogOut className="w-4 h-4 mr-2.5" />
                     Cerrar Sesión
                   </div>
@@ -105,44 +111,43 @@ export const Layout = ({ header, children }) => {
             {children}
           </main>
 
-                      {/* =========================================================
+          {/* =========================================================
                 FOOTER FIJO Y DISCRETO (MINIMALISTA - GRIS ULTRA SUAVE)
                 ========================================================= */}
-            <footer className="fixed bottom-0 left-0 z-40 w-full h-10 border-t bg-slate-50/80 backdrop-blur-sm border-slate-200/60 shadow-xs dark:bg-gray-900/80">
-                <div className="flex items-center justify-between h-full px-6 text-[11px] font-medium text-slate-400 dark:text-slate-500">
-                    {/* Izquierda: Copyright y Versión */}
-                    <div>
-                        <a
-                            href="#"
-                            className="text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300"
-                        >
-                            © {new Date().getFullYear()}{" "}
-                            {txt.footer.empresa}{" "}
-                        </a>
-                    </div>
+          <footer className="fixed bottom-0 left-0 z-40 w-full h-10 border-t bg-slate-50/80 backdrop-blur-sm border-slate-200/60 shadow-xs dark:bg-gray-900/80">
+            <div className="flex items-center justify-between h-full px-6 text-[11px] font-medium text-slate-400 dark:text-slate-500">
+              {/* Izquierda: Copyright y Versión */}
+              <div>
+                <a
+                  href="#"
+                  className="text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300"
+                >
+                  © {new Date().getFullYear()} {txt.footer.empresa}{" "}
+                </a>
+              </div>
 
-                    {/* Centro: Datos extras del Dashboard */}
-                    <div className="hidden md:inline text-slate-400/80 dark:text-slate-600">
-                        <a
-                            href="#"
-                            className="text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300"
-                        >
-                            {txt.footer.developBy}
-                        </a>
-                    </div>
+              {/* Centro: Datos extras del Dashboard */}
+              <div className="hidden md:inline text-slate-400/80 dark:text-slate-600">
+                <a
+                  href="#"
+                  className="text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300"
+                >
+                  {txt.footer.developBy}
+                </a>
+              </div>
 
-                    {/* Derecha: Enlaces rápidos o soporte */}
-                    <div className="flex items-center gap-4">
-                        {txt.footer.version}
-                        <a
-                            href="#"
-                            className="text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300"
-                        >
-                            {txt.footer.tecno}{" "}
-                        </a>
-                    </div>
-                </div>
-            </footer>
+              {/* Derecha: Enlaces rápidos o soporte */}
+              <div className="flex items-center gap-4">
+                {txt.footer.version}
+                <a
+                  href="#"
+                  className="text-slate-400 hover:text-slate-600 transition-colors dark:text-slate-500 dark:hover:text-slate-300"
+                >
+                  {txt.footer.tecno}{" "}
+                </a>
+              </div>
+            </div>
+          </footer>
         </div>
       </div>
     </SidebarProvider>

@@ -19,9 +19,21 @@ from django.urls import path
 from core.views.home_view import home
 from core.views.usuarios_views import usuarios
 from core.views.sam_view import sam
+from core.views.login_view import login_view,login_user,logout_user
+from core.views.register_view import register,register_user
+from core.views.forgotpass_view import forgotpass_view
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home, name='home'), # // Y esto
+    # path('',home, name='home'),
+    path('',login_view, name='login'), 
+    path('login/store',login_user, name='login_store'), 
+    path('login/logout',logout_user, name='login_logout'), 
+
+    path('register',register, name='register'), # // Y esto
+    path('register/store', register_user, name='register_store'), # Procesa los datos (POST)
+
+        path('forgot_pass',forgotpass_view, name='forgot_pass'), # // Y esto
+
     path('usuarios/',usuarios, name="usuarios"),
     path('sam/',sam, name="sam")
 
