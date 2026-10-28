@@ -4,12 +4,22 @@ import { SidebarProvider, SidebarTrigger } from "./ui/sidebar";
 import { ChevronDown, User, Settings, Shield, LogOut } from "lucide-react";
 import { txt } from "@/lang/uiLang";
 import { router } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react"; // 1. Importa usePage de Inertia
 export const Layout = ({ header, children }) => {
   //Abrir el modal o cerrar
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const logout = () =>{
-    router.post("/login/logout")
-  }
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const { auth } = usePage().props;
+  // const user = auth.user;
+
+  // 1. Obtenemos las props de Inertia de manera segura
+  const { auth } = usePage().props;
+
+  // CORRECCIÓN: Usamos auth?.user directamente (con encadenamiento opcional)
+  const user = auth?.user;
+
+  const logout = () => {
+    router.post("/login/logout");
+  };
 
   return (
     <SidebarProvider>
@@ -40,10 +50,11 @@ export const Layout = ({ header, children }) => {
                 <div className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors cursor-pointer">
                   {/* Avatar simulado con la inicial */}
                   <div className="w-7 h-7 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold text-xs uppercase">
-                    U
+                     {user && user.name ? user.name.charAt(0) : "U"}
                   </div>
                   <span className="hidden md:inline-block max-w-[120px] truncate">
-                    Usuario Ejemplo
+                    {/* Usuario Ejemplo */}
+                    {user ? user.name : "Sin sesión"}
                   </span>
                   <ChevronDown className="w-4 h-4 text-slate-400" />
                 </div>
@@ -58,10 +69,11 @@ export const Layout = ({ header, children }) => {
                       Cuenta
                     </p>
                     <p className="text-sm font-semibold text-slate-800 dark:text-slate-100 truncate mt-0.5">
-                      Usuario Ejemplo
+                      {user ? user.name : "Sin sesión"}
                     </p>
                     <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
-                      usuario@email.com
+                      {/* usuario@email.com */}
+                      {user ? user.email : "correo@ejemplo.com"}
                     </p>
                   </div>
 

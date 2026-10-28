@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'inertia.middleware.InertiaMiddleware',
+    'django3.middleware.InertiaShareUserMiddleware', 
 ]
 
 DJANGO_VITE = {
@@ -71,6 +72,12 @@ DJANGO_VITE = {
 }
 
 INERTIA_LAYOUT = 'base.html'
+
+# Agrega esto en tu settings.py
+INERTIA = {
+    'ACCENT_COLOR': '#F59E0B',
+    'SHARE': 'django3.inertia.share',  # <--- Reemplaza 'tu_proyecto' por el nombre real de tu carpeta principal
+}
 
 ROOT_URLCONF = 'django3.urls'
 

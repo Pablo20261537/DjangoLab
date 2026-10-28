@@ -5,7 +5,6 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout  # Renombramos para evitar conflictos
 from django.contrib.auth.models import User
 from django.urls import reverse
-
 # 1. Vista para renderizar la página de Login con Inertia
 def login_view(request):  # Cambiamos el nombre para que no choque con la función 'login' de django
     return render(request, 'Auth/Login', {
@@ -42,7 +41,7 @@ def login_user(request):
             
             # En lugar de JsonResponse plano, Inertia prefiere una redirección (HttpResponseRedirect) 
             # o una respuesta que le indique a dónde navegar tras el éxito.
-            return HttpResponseRedirect('/usuarios')  # O la ruta de tu dashboard / home
+            return HttpResponseRedirect('/usuarios')  # O la ruta de tu dashboard / home    
         else:
             return JsonResponse({
                 "status": "error",

@@ -22,6 +22,7 @@ from core.views.sam_view import sam
 from core.views.login_view import login_view,login_user,logout_user
 from core.views.register_view import register,register_user
 from core.views.forgotpass_view import forgotpass_view
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',home, name='home'),
